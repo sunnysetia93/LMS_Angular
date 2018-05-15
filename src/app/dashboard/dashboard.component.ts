@@ -13,8 +13,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.api.getAllBatches().subscribe(
-      data=>{
-          this.batches = data
+      (data:any)=>{
+          this.batches = data.filter((v)=>{
+              return v.startYear>2018
+          })
       }
     )
   }

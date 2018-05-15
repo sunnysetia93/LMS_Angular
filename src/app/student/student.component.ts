@@ -15,6 +15,9 @@ export class StudentComponent implements OnInit {
   email:string;
   selectedId:number;
   selectedName:string;
+  batches:any
+  batchId:number;
+  error:string;
 
   constructor(private api:ApiService) { 
     this.studentList=[]
@@ -22,6 +25,7 @@ export class StudentComponent implements OnInit {
 
   ngOnInit() {
       this.getStudents();
+      this.getBatches();
   }
 
   selectedStudent(id,name){
@@ -44,6 +48,14 @@ export class StudentComponent implements OnInit {
     )
   }
 
+  getBatches(){
+    this.api.getAllBatches().subscribe(
+      data=>{
+        this.batches = data
+      }
+    )
+  }
+
   add(){
     let student = {
       name:this.name,
@@ -63,5 +75,19 @@ export class StudentComponent implements OnInit {
     )
   }
 
+  enroll(){
+    let stud = {
+      batchId:this.batchId,
+      studentId:this.selectedId
+    }
+    this.api.enrollStudent(stud).subscribe(
+      data=>{
+        console.log(data)
+      },
+      err=>{
+        this.error="User already present in this batch ";
+      }
+    )
+  }
 
 }

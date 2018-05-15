@@ -1,3 +1,9 @@
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="error">
+        <strong>Error : </strong> {{error}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+</div>
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-primary" id="result_panel">
@@ -25,8 +31,19 @@
                     <td>{{selectedName}}</td>
                 </tbody>
             </table>
-            
+        <div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Batch to Enroll
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" style="cursor:pointer"  (click)="batchId=s.id" *ngFor="let s of batches">{{s.name}}</a>
+            </div>
+        </div><br><br>
+          <button type="button" class="btn btn-primary" (click)="enroll()">Submit</button>
+                
         </div>
+    </div>
         
     </div>
 </div>

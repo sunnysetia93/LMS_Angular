@@ -1,0 +1,107 @@
+<br><br>
+<div class="row">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-lecture-modal-lg">Add Lecture</button>
+    </div>
+    <div class="col-md-6">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-student-modal-lg">Add Student</button>
+    </div>
+</div>
+<div class="modal fade bd-lecture-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myBatchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Lecture</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Select Subject
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" style="cursor:pointer"  (click)="subjectId=s.id" *ngFor="let s of subjects">{{s.name}}</a>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="addLecture()">Submit</button>
+            </div>
+          </div>
+      </div>
+</div>
+
+<div class="modal fade bd-student-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myBatchModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enroll Student</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Selected Batch Id:</label>
+              <label for="recipient-name" class="col-form-label">{{batchId}}</label>              
+            </div>
+            <div class="form-group">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Select Student to Enroll
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" style="cursor:pointer"  (click)="studentId=s.id" *ngFor="let s of filteredStudents">{{s.name}}</a>
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="enrollStudent()">Submit</button>
+        </div>
+      </div>
+  </div>
+</div>
+<br>
+<br>
+<hr>
+<div class="row">
+  <div class="col-md-6">
+      <div class="panel panel-primary" id="result_panel">
+          <div class="panel-heading"><h3 class="panel-title">Lectures</h3>
+          </div><br><br>
+          <div class="panel-body">
+              <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let lecture of lectures">
+                      <strong>Id: {{lecture.id }} | Date : {{lecture.createdAt}}</strong>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </div>
+      <div class="col-md-6">
+          <div class="panel panel-primary" id="result_panel">
+              <div class="panel-heading"><h3 class="panel-title">Students in batch</h3>
+              </div><br><br>
+              <div class="panel-body">
+                  <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let student of students">
+                          <strong (click)="selectedBatch(batch.id)">{{student.name}}</strong>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+  </div>
+
+</div>
+  

@@ -1,0 +1,75 @@
+<div class="row">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-batch-modal-lg">Add Batch</button>
+  
+    <div class="modal fade bd-batch-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myBatchModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Batch for Course - {{courseName}} </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Name:</label>
+                    <input type="text" class="form-control" id="recipient-name" #name>
+                  </div>
+                  <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Start Year:</label>
+                      <input type="text" class="form-control" id="recipient-name" #year>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addBatch(name.value,year.value)">Submit</button>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="addStudent" style="font-size:30px"><br><br>
+    Batches Available for {{courseName}}
+</div>
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-primary" id="result_panel">
+            <div class="panel-heading"><h3 class="panel-title">Batches</h3>
+            </div><br><br>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let batch of batches">
+                        <strong (click)="selectedBatch(batch.id)">{{batch.name}}</strong>
+                    </li>
+                </ul>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel-heading"><h3 class="panel-title">Batch Detail</h3></div><br><br>
+        <div class="enroll" *ngIf="selectedId">
+            <table class="table">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Start Year</th>
+                </thead>
+                <tbody>
+                    <td>{{batch.id}}</td>
+                    <td>{{batch.name}}</td>
+                    <td>{{batch.startYear}}</td>                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+<div *ngIf="lectureList">
+  <app-lecture [lectures]="lectureList" [students]="studentList" [subjects]="subjectList" [batchId]="selectedId" [courseId]="courseId"></app-lecture>
+</div>
+<div *ngelse>
+  No Lectures/Students found for the particular batch
+</div>

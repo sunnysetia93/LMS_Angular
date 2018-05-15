@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary" id="result_panel">
+            <div class="panel-heading"><h3 class="panel-title">Students</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let student of studentList">
+                        <strong (click)="selectedStudent(student.id,student.name)">{{student.name}}</strong>
+                    </li>
+                </ul>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel-heading"><h3 class="panel-title">Enroll Students</h3></div><br><br>
+        <div class="enroll" *ngIf="selectedId">
+            <table class="table">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                </thead>
+                <tbody>
+                    <td>{{selectedId}}</td>
+                    <td>{{selectedName}}</td>
+                </tbody>
+            </table>
+            
+        </div>
+        
+    </div>
+</div>
+<div class="addstudent">
+    Add New Student
+</div>
+<form class="form">
+    <div class="form-group">
+        <label for="exampleInputName1">Name</label>
+        <input type="text" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Enter name" [(ngModel)]="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="email" name="email">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputAge1">Age</label>
+        <input type="text" class="form-control" id="exampleInputAge1" placeholder="Enter Age" [(ngModel)]="age" name="age">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="add()">Submit</button>
+</form>

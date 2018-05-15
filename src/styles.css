@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.form-group{
+    text-align: left;
+    font-size: 20px;
+}
+
+.form{
+    padding-bottom: 50px;
+}
+
+.addstudent{
+    padding-top: 35px;
+    padding-bottom: 35px;    
+    font-size: 25px;
+}
+
+.list-group-item{
+    cursor: pointer;
+}
+
+.dropdown-menu{
+    width: 100px;
+}
